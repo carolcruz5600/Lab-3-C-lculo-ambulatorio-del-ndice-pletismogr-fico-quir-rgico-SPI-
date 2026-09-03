@@ -1,1 +1,1 @@
-# Lab-3-C-lculo-ambulatorio-del-ndice-pletismogr-fico-quir-rgico-SPI-
+# Laboratorio 3: Cálculo ambulatorio del índice pletismogrófico quirúrgico (SPI)
