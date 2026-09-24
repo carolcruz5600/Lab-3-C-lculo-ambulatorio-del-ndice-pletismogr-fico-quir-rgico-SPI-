@@ -672,13 +672,18 @@ $$
 
 ### Evolución temporal del SPI
 
-![SPI durante condición normal y CPT](Figure_5.png)
+<div align="center">
+
+<img width="612.58" height="400" alt="image" src="https://github.com/user-attachments/assets/7e4da6e9-bda7-45ac-9b47-ef3f4a4e05ef" />
 
 **Figura 5.** Evolución temporal del SPI estimado durante la condición normal y la aplicación del Cold Pressor Test.
 
-La Figura 5 constituye el principal resultado del experimento, ya que permite observar la evolución del SPI dentro de una misma captura que contiene las dos condiciones experimentales.
+</div>
 
-La adquisición original fue realizada de la siguiente manera:
+La figura presenta la evolución temporal del índice SPI estimado a partir de la señal PPG durante dos condiciones experimentales consecutivas. Los primeros 20 segundos corresponden a la condición basal, en la cual el participante permaneció en estado normal y sin aplicación del estímulo. Los 20 segundos siguientes, aproximadamente de 20 a 40 s, corresponden al Cold Pressor Test, durante el cual se aplicó el estímulo de frío.
+Durante la condición basal (0–20 s), el SPI presenta fluctuaciones considerables, con valores que descienden hasta aproximadamente 10–20 y posteriormente comienzan a incrementarse. Al iniciar el Cold Pressor Test, alrededor de los 20 s, se observa un aumento marcado del índice, alcanzando valores superiores a 80–90 entre aproximadamente los 21 y 26 s.
+Durante el resto del Cold Pressor Test, el SPI continúa presentando variaciones, pero se mantiene gran parte del tiempo en valores superiores a los observados en los mínimos del periodo basal. Hacia el final del registro se evidencia nuevamente un incremento pronunciado, alcanzando un valor cercano a 94.
+Este comportamiento muestra que el índice estimado cambia después del inicio del Cold Pressor Test, coincidiendo con la modificación de la amplitud de la señal PPG observada durante el estímulo. Para el análisis cuantitativo, resulta más adecuado separar los primeros 20 s como Baseline y los últimos 20 s como Cold Pressor Test y comparar estadísticamente los valores representativos de cada segmento, en lugar de interpretar los 40 s como una única condición basal.
 
 $$
 \underbrace{0-20\ \text{s}}_{\text{Normal}}
@@ -834,3 +839,144 @@ $$
 
 Los resultados obtenidos muestran que el sistema desarrollado fue sensible al cambio de condición experimental, observándose valores de SPI mayores durante una parte importante del Cold Pressor Test en comparación con la condición normal.
 
+# 13. Análisis de resultados
+
+Los resultados obtenidos muestran que el sistema implementado permitió adquirir una señal fotopletismográfica estable, identificar los pulsos cardiacos y observar cambios en las variables derivadas de la PPG durante la aplicación del Cold Pressor Test (CPT). El análisis debe considerar que la adquisición original tuvo una duración de 40 s, con los primeros 20 s en condición normal y los últimos 20 s bajo CPT. Debido a que durante el procesamiento se eliminaron los primeros 2 s, las gráficas finales contienen aproximadamente 38 s de información y la transición hacia el CPT aparece alrededor del segundo 18.
+
+En la **Figura 1** se observa la señal PPG durante la adquisición en tiempo real. La señal presenta un comportamiento pulsátil y periódico, lo que indica que el MAX30102 logró registrar las variaciones asociadas con cada ciclo cardiaco. A pesar de las variaciones naturales de amplitud entre pulsos, se conserva una morfología suficientemente definida para realizar el procesamiento posterior. Esto es importante, ya que una señal excesivamente ruidosa o afectada por movimiento dificultaría la identificación de los puntos característicos necesarios para estimar el SPI.
+
+La **Figura 2** permite observar con mayor detalle un segmento de la señal procesada entre aproximadamente 5 y 10 s. En este intervalo se distinguen claramente los ciclos individuales de la PPG. La presencia de máximos y mínimos bien definidos permitió aplicar el algoritmo de detección sin necesidad de realizar un filtrado complejo de la señal. Esta característica favoreció el análisis de la amplitud de cada pulso y del intervalo temporal entre pulsaciones consecutivas.
+
+En la **Figura 3** se presenta el resultado de la detección de máximos y valles. Los marcadores siguen adecuadamente la morfología de la señal y se observa aproximadamente un máximo y un valle asociados con cada ciclo cardiaco. Para los 38 s analizados se detectaron **65 latidos y 65 parejas pico-valle**, lo que indica que fue posible obtener la información necesaria para caracterizar la amplitud de los pulsos a lo largo del registro. La correcta detección de estos puntos es fundamental, debido a que cualquier error en su ubicación puede modificar tanto la amplitud calculada como el intervalo entre latidos y, en consecuencia, afectar el SPI estimado.
+
+A partir de los 65 latidos detectados se obtuvo una **frecuencia cardiaca global de 102.7 bpm**. Adicionalmente, el intervalo entre latidos promedio fue de **0.581 s**. Estos dos resultados presentan coherencia entre sí y respaldan el funcionamiento de la detección temporal de los pulsos. Sin embargo, deben interpretarse como valores globales, ya que incluyen tanto la condición normal como el periodo de CPT. Por esta razón, con estos resultados no es posible determinar exactamente cuánto aumentó o disminuyó la frecuencia cardiaca entre ambas condiciones.
+
+La **Figura 4** muestra uno de los cambios más relevantes del experimento: la variación de la amplitud PPG a lo largo del tiempo. Para toda la captura se obtuvo una amplitud promedio de **1637.662 unidades**, aunque la gráfica evidencia que este parámetro no permaneció constante. Durante la primera parte del registro se observan varios pulsos con amplitudes relativamente elevadas, algunos superiores a 2000 unidades. Posteriormente, alrededor del inicio del CPT, la amplitud comienza a disminuir y durante parte de la segunda condición aparecen valores considerablemente menores.
+
+Este comportamiento es importante desde el punto de vista fisiológico, ya que la amplitud de la señal PPG está relacionada con las variaciones pulsátiles del volumen sanguíneo periférico. El CPT genera un estímulo capaz de producir una respuesta autonómica y modificaciones vasculares periféricas. Por lo tanto, la reducción de amplitud observada durante parte del estímulo es compatible con un cambio en la perfusión periférica. No obstante, esta interpretación debe realizarse con precaución, ya que la amplitud PPG también puede verse afectada por movimiento, temperatura, presión del dedo sobre el sensor y cambios en el contacto óptico.
+
+La **Figura 5** constituye el resultado principal del experimento, debido a que muestra la evolución temporal del SPI estimado. Para toda la adquisición se obtuvo un **SPI promedio de 53.06**, con un **mínimo de 11.12** y un **máximo de 93.90**. La diferencia considerable entre los valores mínimo y máximo evidencia que el índice presentó una respuesta dinámica durante el registro y que utilizar únicamente el promedio global no representa completamente el comportamiento observado.
+
+Durante la primera parte de la Figura 5, correspondiente a la condición normal, predominan valores de SPI bajos y moderados, aunque existe variabilidad entre pulsos. A partir de la inspección visual de esta región puede estimarse un SPI promedio cercano a **35**. Antes del inicio del CPT también se observa una disminución del índice hasta valores próximos al mínimo registrado de 11.12.
+
+El cambio más evidente aparece aproximadamente después del segundo 18 de la gráfica procesada, correspondiente al inicio experimental del CPT en el segundo 20 de adquisición. A partir de esta región se observa un incremento marcado del SPI, con varios valores superiores a 60 y posteriormente superiores a 80. Durante esta condición se alcanza el máximo registrado de **93.90**. A partir de la distribución visual de los puntos puede estimarse un SPI cercano a **68** durante el CPT.
+
+De esta manera, la comparación visual entre ambas condiciones sugiere una diferencia aproximada de **33 unidades de SPI**, pasando de un valor estimado cercano a 35 durante la condición normal a aproximadamente 68 durante el CPT. Estos dos valores deben considerarse estimaciones obtenidas de la Figura 5 y no resultados calculados directamente por MATLAB. Los valores exactos proporcionados por el procesamiento fueron 53.06 para el promedio global, 11.12 para el mínimo y 93.90 para el máximo.
+
+Un aspecto relevante aparece al comparar directamente las **Figuras 4 y 5**. En la región temporal asociada con el comienzo del CPT se observa una disminución de la amplitud PPG al mismo tiempo que el SPI presenta una tendencia creciente. Esta relación es consistente con el funcionamiento del algoritmo implementado, en el cual la amplitud fotopletismográfica tiene una influencia importante sobre el valor final del SPI. En consecuencia, los cambios periféricos registrados por el sensor durante el estímulo contribuyen de forma importante a la variación del índice.
+
+Sin embargo, la respuesta durante el CPT no es completamente uniforme. En la Figura 5 se observa que después de alcanzar valores elevados el SPI vuelve a disminuir temporalmente y posteriormente presenta nuevos incrementos, terminando nuevamente cerca de valores altos. Esta variabilidad puede estar relacionada con la naturaleza dinámica de la respuesta fisiológica al estímulo, pero también con las características de la adquisición. Por esta razón, resulta más apropiado interpretar la tendencia general del registro que asociar la respuesta al CPT únicamente con el máximo de 93.90.
+
+## 13.1 Comparación con valores observados durante cirugía
+
+La guía de laboratorio establece que el SPI se expresa en una escala entre 0 y 100 y señala que valores mayores se relacionan con una mayor respuesta nociceptiva o de estrés. Como referencia durante anestesia general, la guía menciona un intervalo aproximado entre **20 y 50**, procurando evitar valores superiores a 50 y aumentos mayores de 10 unidades.
+
+Al comparar esta referencia con los resultados experimentales, el SPI estimado durante la condición normal, cercano a **35**, se encuentra dentro del intervalo mencionado. En cambio, durante el CPT se observan repetidamente valores superiores a 50 y se alcanza un máximo de **93.90**. La diferencia visual estimada de aproximadamente **33 unidades** entre las dos condiciones también supera el cambio de 10 unidades señalado en la guía como referencia intraoperatoria.
+
+Estos resultados muestran que el índice experimental presentó una variación suficientemente grande para diferenciar las dos etapas del registro. Sin embargo, los valores no deben interpretarse de manera idéntica a los obtenidos en un paciente durante una intervención quirúrgica. En este experimento el participante se encontraba consciente, no estaba bajo anestesia general ni recibió medicamentos analgésicos, y el estímulo aplicado correspondió a un CPT y no a una estimulación quirúrgica.
+
+Por lo tanto, el hecho de obtener valores superiores a 50 durante el CPT no permite afirmar que exista una situación equivalente a analgesia insuficiente durante cirugía. La comparación con el rango clínico permite contextualizar la magnitud del cambio observado, pero no establecer una equivalencia clínica directa.
+
+## 13.2 Alcances y limitaciones del SPI obtenido
+
+Los resultados muestran que el sistema fue capaz de detectar modificaciones fisiológicas asociadas temporalmente con la aplicación del Cold Pressor Test. La disminución de la amplitud PPG observada en la Figura 4 y el incremento del SPI observado en la Figura 5 indican que las variables extraídas de la fotopletismografía fueron sensibles al cambio de condición experimental.
+
+Sin embargo, el SPI no representa una medición directa de la intensidad del dolor. El índice utiliza variables fisiológicas relacionadas con la respuesta autonómica, mientras que el dolor corresponde a una experiencia consciente y subjetiva. En consecuencia, el aumento observado desde aproximadamente 35 hasta 68 no significa que el participante haya experimentado una cantidad proporcionalmente mayor de dolor; únicamente indica que las variables fisiológicas empleadas para construir el índice cambiaron de manera importante durante el estímulo.
+
+Otra limitación se encuentra en la sensibilidad de la PPG a factores externos. Un cambio en la posición del dedo, la presión aplicada sobre el MAX30102, el movimiento, la temperatura o la perfusión periférica puede modificar la amplitud registrada. Debido a que esta amplitud tiene una influencia considerable sobre el SPI implementado, un artefacto de adquisición podría generar cambios en el índice que no necesariamente correspondan a una modificación de la respuesta nociceptiva.
+
+También debe considerarse el procedimiento de normalización empleado. El código utiliza los valores mínimos y máximos encontrados dentro de la propia captura para normalizar las variables antes de calcular el SPI. Como consecuencia, el índice depende parcialmente de las características particulares de ese registro. Por esta razón, el resultado debe considerarse un **SPI estimado experimentalmente** y no un valor directamente equivalente al obtenido mediante un monitor clínico comercial.
+
+La duración del protocolo también limita el análisis. En esta implementación se utilizaron 20 s de condición normal y 20 s de CPT. Este periodo permitió observar el inicio de la respuesta al estímulo, pero no incluyó una etapa posterior de recuperación. Por lo tanto, no fue posible determinar si después de finalizar el CPT la amplitud PPG y el SPI regresaban progresivamente a sus valores iniciales.
+
+Además, la comparación entre ambas condiciones todavía presenta una limitación cuantitativa: los valores aproximados de **35 para la condición normal y 68 para el CPT** fueron estimados visualmente a partir de la Figura 5. Una evaluación más rigurosa requeriría calcular directamente en MATLAB el promedio y la variabilidad del SPI para cada periodo por separado. Esto permitiría realizar una comparación cuantitativa entre condiciones sin depender de la inspección visual.
+
+## 13.3 Interpretación general de los resultados
+
+Al considerar conjuntamente todas las figuras, se observa una secuencia coherente dentro del procesamiento experimental. Las **Figuras 1 y 2** muestran que fue posible adquirir una señal PPG con una morfología pulsátil identificable. La **Figura 3** confirma que el algoritmo pudo detectar los puntos característicos de los pulsos, obteniéndose **65 latidos y 65 parejas pico-valle**. A partir de esta información se obtuvo una frecuencia cardiaca global de **102.7 bpm**, un HBI promedio de **0.581 s** y una amplitud PPG promedio de **1637.662 unidades**.
+
+Posteriormente, la **Figura 4** evidencia modificaciones de la amplitud PPG durante el registro, especialmente alrededor y después del comienzo del Cold Pressor Test. Finalmente, la **Figura 5** muestra que estas modificaciones estuvieron acompañadas por un cambio importante en el SPI, cuyo promedio global fue **53.06**, con valores comprendidos entre **11.12 y 93.90**.
+
+La tendencia observada permite diferenciar experimentalmente las dos condiciones: durante la etapa normal predominan valores menores de SPI, mientras que durante una parte importante del CPT aparecen valores considerablemente superiores. La estimación visual sugiere un cambio desde aproximadamente **35 hasta 68**, equivalente a una diferencia cercana a **33 unidades**.
+
+En conjunto, los resultados indican que el sistema desarrollado fue sensible a las modificaciones fisiológicas ocurridas durante el CPT y que la señal PPG contiene información útil para estudiar cambios relacionados con la respuesta autonómica. Al mismo tiempo, las variaciones observadas y las limitaciones del método muestran que el SPI debe interpretarse como un indicador fisiológico relacionado con la respuesta nociceptiva y no como una medida directa de la intensidad del dolor.
+
+Por lo tanto, el principal resultado de la práctica no es únicamente haber obtenido un valor promedio de SPI de 53.06, sino haber observado su evolución temporal y su modificación frente a un estímulo controlado. Esta respuesta, acompañada por cambios en la amplitud PPG, demuestra la utilidad del procesamiento fotopletismográfico para analizar de manera no invasiva modificaciones de la respuesta autonómica, manteniendo las limitaciones propias de una implementación experimental.4
+
+# 14. Preguntas de discusión
+
+## 14.1 ¿Qué relación existe entre las variaciones del volumen sanguíneo periférico y el balance autonómico?
+
+Las variaciones del volumen sanguíneo periférico están estrechamente relacionadas con la actividad del sistema nervioso autónomo, debido a que este participa en la regulación de la frecuencia cardiaca y del tono de los vasos sanguíneos. Por esta razón, los cambios en el balance entre la actividad simpática y parasimpática pueden producir modificaciones detectables mediante fotopletismografía.
+
+La señal PPG registra ópticamente las variaciones pulsátiles del volumen sanguíneo en el tejido periférico. En condiciones relativamente estables, cada latido produce un aumento temporal del volumen de sangre y genera un pulso identificable. Sin embargo, cuando se modifica el tono vascular periférico, también puede cambiar la amplitud de estos pulsos.
+
+Durante una respuesta autonómica con mayor participación simpática pueden presentarse modificaciones cardiovasculares y vasculares periféricas. En particular, los cambios en el tono vascular pueden reducir la componente pulsátil detectada en el sitio de medición y producir una disminución de la amplitud PPG.
+
+Este comportamiento puede relacionarse con los resultados obtenidos en la práctica. En la **Figura 4** se observa que durante una parte importante de la condición inicial se presentan amplitudes PPG relativamente elevadas, mientras que alrededor y después del inicio del Cold Pressor Test aparecen valores menores. Para toda la adquisición se obtuvo una amplitud promedio de **1637.662 unidades**, aunque la gráfica muestra una variación considerable alrededor de este valor.
+
+La disminución observada durante el CPT es compatible con una modificación de la circulación periférica asociada con la respuesta autonómica generada por el estímulo. Esto demuestra que la PPG no solamente permite identificar los pulsos cardiacos, sino que también contiene información relacionada con cambios vasculares periféricos.
+
+La relación entre el sistema nervioso autónomo y la señal PPG también ayuda a explicar el comportamiento del SPI observado en la **Figura 5**. Durante la condición normal predominan valores menores del índice, mientras que durante el CPT se presentan valores considerablemente mayores, alcanzándose un máximo de **93.90**. Al mismo tiempo, en la Figura 4 se observa una reducción de la amplitud PPG durante parte de esta segunda condición.
+
+Por lo tanto, los resultados experimentales muestran una relación entre las modificaciones del volumen sanguíneo periférico detectadas mediante PPG y los cambios en las variables utilizadas para estimar la respuesta autonómica. Sin embargo, esta relación no es exclusiva, ya que la amplitud PPG también puede verse afectada por factores como la temperatura, el movimiento, la presión ejercida sobre el sensor y la calidad del contacto con el dedo.
+
+En consecuencia, la PPG puede utilizarse como una herramienta no invasiva para observar indirectamente cambios asociados con el balance autonómico, siempre que se controlen adecuadamente las condiciones de adquisición.
+
+---
+
+## 14.2 Compare el SPI con otros índices de nocicepción, como ANI y el índice de perfusión
+
+El **Surgical Pleth Index (SPI)**, el **Analgesia Nociception Index (ANI)** y el **índice de perfusión (PI)** utilizan variables fisiológicas diferentes para evaluar cambios relacionados con la respuesta autonómica. Aunque los tres pueden aportar información útil durante la monitorización fisiológica, no representan exactamente el mismo fenómeno y no deben interpretarse como índices equivalentes.
+
+### Surgical Pleth Index (SPI)
+
+El SPI se basa en información cardiovascular obtenida a partir de la señal fotopletismográfica. En la implementación realizada en esta práctica se utilizaron principalmente la **amplitud del pulso fotopletismográfico (PPGA)** y el **intervalo entre latidos (HBI)**.
+
+Esto permite integrar en un único índice información relacionada tanto con la respuesta vascular periférica como con los cambios temporales entre pulsaciones.
+
+En los resultados experimentales, el SPI presentó un promedio global de **53.06**, con un mínimo de **11.12** y un máximo de **93.90**. Además, la Figura 5 muestra una tendencia hacia valores mayores durante el Cold Pressor Test en comparación con la condición inicial.
+
+Una característica importante del SPI es precisamente la integración de más de una característica fisiológica. Sin embargo, también presenta sensibilidad frente a artefactos que modifiquen la señal PPG, especialmente aquellos relacionados con movimiento, presión sobre el sensor o cambios de perfusión periférica.
+
+### Analgesia Nociception Index (ANI)
+
+El **Analgesia Nociception Index (ANI)** utiliza principalmente información relacionada con la variabilidad de la frecuencia cardiaca para estudiar modificaciones del balance autonómico.
+
+A diferencia del SPI, su funcionamiento no depende directamente de la amplitud de la onda fotopletismográfica. Por esta razón, SPI y ANI evalúan la respuesta autonómica utilizando características fisiológicas diferentes.
+
+El SPI empleado en esta práctica incorpora información vascular periférica mediante PPGA, además de información temporal relacionada con los latidos mediante HBI. El ANI, por su parte, se concentra principalmente en las variaciones del ritmo cardiaco relacionadas con la regulación autonómica.
+
+Por lo tanto, ambos índices pueden responder ante un estímulo nociceptivo, pero sus valores no son directamente intercambiables y pueden comportarse de manera diferente ante determinados cambios fisiológicos o artefactos.
+
+### Índice de perfusión (PI)
+
+El **índice de perfusión (PI)** también se obtiene a partir de fotopletismografía, pero su objetivo es diferente. Este parámetro representa principalmente la relación entre la componente pulsátil y la componente no pulsátil de la señal detectada en el tejido.
+
+Por esta razón, el PI proporciona información sobre la intensidad relativa de la perfusión periférica en el sitio donde se encuentra el sensor.
+
+En relación con este experimento, el comportamiento observado en la **Figura 4** es especialmente relevante para este tipo de indicador, debido a que durante el CPT se presentaron modificaciones importantes de la amplitud de los pulsos.
+
+Sin embargo, a diferencia del SPI, el índice de perfusión no integra directamente la amplitud PPG con el intervalo entre latidos para generar un índice de respuesta nociceptiva. Su interpretación se encuentra principalmente relacionada con cambios en la perfusión periférica.
+
+### Comparación general
+
+<div align="center">
+
+|               Característica              |                           SPI                           |                            ANI                            |          Índice de perfusión (PI)         |
+| :---------------------------------------: | :-----------------------------------------------------: | :-------------------------------------------------------: | :---------------------------------------: |
+|       Variable fisiológica principal      |              PPG e intervalo entre latidos              |              Variabilidad del ritmo cardiaco              |            Perfusión periférica           |
+|            Utiliza amplitud PPG           |                            Sí                           |                      No directamente                      |                     Sí                    |
+|   Utiliza información del ritmo cardiaco  |                            Sí                           |                             Sí                            |              No directamente              |
+|        Refleja cambios autonómicos        |                            Sí                           |                             Sí                            |               Indirectamente              |
+| Sensible a cambios vasculares periféricos |                            Sí                           |                 Menor dependencia directa                 |                     Sí                    |
+|          Relación con nocicepción         | Índice orientado al balance nocicepción-antinocicepción |     Índice orientado al balance analgesia-nocicepción     | No es un índice específico de nocicepción |
+|            Principal limitación           |       Dependencia de PPG y artefactos periféricos       | Dependencia de variaciones autonómicas del ritmo cardiaco |    Baja especificidad para nocicepción    |
+
+</div>
+
+En comparación, el **SPI** combina información relacionada con el comportamiento cardiaco y con la circulación periférica. El **ANI** se concentra principalmente en modificaciones autonómicas reflejadas en la dinámica del ritmo cardiaco, mientras que el **PI** caracteriza principalmente el estado de la perfusión periférica.
+
+En el contexto de esta práctica, el SPI resulta particularmente útil porque permite aprovechar la misma señal PPG adquirida con el MAX30102 para obtener información de amplitud y de temporalidad entre pulsos. Los resultados de las Figuras 4 y 5 muestran precisamente que durante el Cold Pressor Test se produjeron cambios tanto en las características de la señal PPG como en el índice calculado.
+
+Sin embargo, ninguno de estos indicadores debe considerarse una medición directa del dolor. El SPI y el ANI buscan caracterizar respuestas fisiológicas relacionadas con el balance autonómico y la nocicepción, mientras que el índice de perfusión proporciona principalmente información vascular periférica. La interpretación de cualquiera de ellos debe realizarse considerando el contexto fisiológico, las condiciones de adquisición y las posibles fuentes de interferencia.
