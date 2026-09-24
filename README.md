@@ -996,3 +996,31 @@ Asimismo, el SPI calculado en este trabajo debe considerarse una **estimación e
 A pesar de estas limitaciones, el sistema desarrollado demuestra la posibilidad de implementar una herramienta de bajo costo para adquirir y procesar señales PPG y estudiar de manera no invasiva cambios fisiológicos asociados con un estímulo controlado. La integración del MAX30102, la ESP32 y MATLAB permitió construir una cadena completa de instrumentación, desde la adquisición de la señal hasta la extracción de parámetros y la estimación continua del SPI.
 
 Como siguiente paso, se propone ampliar el protocolo experimental incluyendo periodos de condición normal, estimulación y recuperación de mayor duración, además de calcular automáticamente los parámetros de cada etapa por separado. También sería conveniente realizar múltiples mediciones y evaluar diferentes participantes para determinar la repetibilidad del sistema. Finalmente, la comparación del SPI experimental con un sistema de referencia permitiría establecer con mayor precisión el alcance de la implementación y evaluar las modificaciones necesarias para aproximarla a una aplicación de monitorización fisiológica más robusta.
+
+# Referencias
+
+[1] J. L. Apfelbaum, C. Chen, S. S. Mehta, and T. J. Gan, “Postoperative pain experience: Results from a national survey suggest postoperative pain continues to be undermanaged,” *Anesthesia & Analgesia*, vol. 97, no. 2, pp. 534–540, 2003, doi: 10.1213/01.ANE.0000068822.10113.9E.
+
+[2] T. Ledowski, “Objective monitoring of nociception: A review of current commercial solutions,” *British Journal of Anaesthesia*, vol. 123, no. 2, pp. e312–e321, 2019, doi: 10.1016/j.bja.2019.03.024.
+
+[3] V. Bonhomme, E. D. L. Boveroux, P. Hans, and J. F. Brichant, “Assessment of nociceptive balance in anaesthesia: A review,” *British Journal of Anaesthesia*, vol. 106, no. 1, pp. 101–111, 2011, doi: 10.1093/bja/aeq291.
+
+[4] M. Huiku et al., “Assessment of surgical stress during general anaesthesia,” *British Journal of Anaesthesia*, vol. 98, no. 4, pp. 447–455, 2007, doi: 10.1093/bja/aem004.
+
+[5] S. Funcke et al., “Nociception level-guided opioid administration in radical retropubic prostatectomy: A randomised controlled trial,” *Anesthesiology*, vol. 127, no. 2, pp. 272–283, 2017, doi: 10.1097/ALN.0000000000001670.
+
+[6] M. Jeanne, C. Clément, J. De Jonckheere, R. Logier, and B. Tavernier, “Variations of the analgesia nociception index during general anaesthesia for laparoscopic abdominal surgery,” *Journal of Clinical Monitoring and Computing*, vol. 26, no. 4, pp. 289–294, 2012, doi: 10.1007/s10877-012-9354-0.
+
+[7] B. Hum, A. Christophides, Z. Jin, M. Elias, K. Taneja, and S. D. Bergese, “The validity and applications of the analgesia nociception index: A narrative review,” *Frontiers in Surgery*, vol. 10, Art. no. 1234246, 2023, doi: 10.3389/fsurg.2023.1234246.
+
+[8] M. K. Kim, G. J. Choi, K. S. Oh, S. P. Lee, and H. Kang, “Pain assessment using the Analgesia Nociception Index (ANI) in patients undergoing general anesthesia: A systematic review and meta-analysis,” *Journal of Personalized Medicine*, vol. 13, no. 10, Art. no. 1461, 2023, doi: 10.3390/jpm13101461.
+
+[9] D. A. Baroni, L. G. Abreu, S. M. Paiva, and L. R. Costa, “Comparison between Analgesia Nociception Index (ANI) and self-reported measures for diagnosing pain in conscious individuals: A systematic review and meta-analysis,” *Scientific Reports*, vol. 12, Art. no. 2862, 2022, doi: 10.1038/s41598-022-06993-z.
+
+[10] T. S. Shahiri, P. Richebé, M. Richard-Lalonde, and C. Gélinas, “Description of the validity of the Analgesia Nociception Index (ANI) and Nociception Level Index (NOL) for nociception assessment in anesthetized patients undergoing surgery: A systematized review,” *Journal of Clinical Monitoring and Computing*, vol. 36, 2022, doi: 10.1007/s10877-021-00772-3.
+
+[11] S. K. Oh, Y. J. Won, and B. G. Lim, “Surgical pleth index monitoring in perioperative pain management: Usefulness and limitations,” *Korean Journal of Anesthesiology*, 2023, doi: 10.4097/kja.23158.
+
+[12] “Evaluation of perfusion index as an objective tool to assess analgesia during laparoscopic surgeries under general anaesthesia,” *Indian Journal of Anaesthesia*, 2022.
+
+[13] E. J. Argüello-Prada, “The mountaineer's method for peak detection in photoplethysmographic signals,” *Revista Facultad de Ingeniería, Universidad de Antioquia*, no. 90, pp. 42–50, Jan.–Mar. 2019, doi: 10.17533/udea.redin.n90a06.
